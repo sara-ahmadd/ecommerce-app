@@ -1,0 +1,10 @@
+/* .carousel-control-next,
+.carousel-control-prev {
+  padding: 20px;
+  background-color: #000;
+} */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: #000;
+  padding: 10px;
+}

@@ -1,0 +1,14 @@
+.logo-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.logo-container .logo-img {
+  width: 100px;
+  height: 100px;
+}
+.logo-container .logo-img img {
+  width: 100%;
+  height: 100%;
+}
