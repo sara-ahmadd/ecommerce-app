@@ -55,7 +55,6 @@ function Products() {
       <p className="fs-5 text-muted text-center">Shop is fun</p>
       <h1 className="text-primary text-center">BROWSE OUR NEW COLLECTION</h1>
       <Categories getCategory={getIntoCategory} getAll={getAllProducts} />
-      {/* <Slider products={product.ProductList} /> */}
       <div className="container ">
         <div className="row my-4 align-items-strech">
           {product.loading && (
