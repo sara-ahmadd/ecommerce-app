@@ -24,6 +24,7 @@ npm start
 - Run The Command :
 
 ```bash
+cd database
 npx json-server --wacth db.json --port 8080
 ```
 
