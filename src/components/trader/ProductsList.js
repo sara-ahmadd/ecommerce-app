@@ -47,7 +47,10 @@ function ProductsList() {
                   >
                     Edit
                   </Link>
-                  <Link to={`/products/${p.id}`} className="btn btn-primary">
+                  <Link
+                    to={`/products/${p.productId}`}
+                    className="btn btn-primary"
+                  >
                     View
                   </Link>
                   <button

@@ -32,7 +32,7 @@ function App() {
                 <Route path="" element={<ProductsList />} />
                 <Route path="edit/:id" exact element={<EditProduct />} />
                 <Route path="add" exact element={<AddNewProduct />} />
-                <Route path=":id" exact element={<ProductDetails />} />
+                <Route path=":productId" exact element={<ProductDetails />} />
               </Route>
             </Routes>
           </div>

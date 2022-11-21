@@ -1,32 +1,40 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+
+import { getProducts } from "../../firebase";
+
 function ProductDetails() {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { productId } = useParams();
   const [product, setProduct] = useState({
     loading: true,
     product: {},
     error: "",
   });
   useEffect(() => {
-    axios.get(`http://localhost:8080/products/${id}`).then((res) => {
-      setProduct({
-        loading: false,
-        product: res.data,
-        error: "",
-      });
-    });
-  }, [id]);
+    getProducts
+      .then((res, rej) => {
+        console.log(res);
+        const prod = res.find((product) => +product.productId === +productId);
+        console.log(prod);
+        return setProduct({
+          loading: false,
+          product: prod,
+          error: "",
+        });
+      })
+      .catch((err) => console.log(err));
+  }, [productId]);
   console.log(product);
   return (
     <div>
       <h1 className="text-primary">Product Details</h1>
-      <h1 className="text-primary">ID : {id}</h1>
+      <h1 className="text-primary">ID : {productId}</h1>
       {product.product && (
         <div
-          key={product.product.id}
+          key={product.product.productId}
           className="card mb-3 px-2 gap-4"
           style={{ width: "100%", height: "60%" }}
         >
