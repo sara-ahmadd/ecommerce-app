@@ -25,7 +25,7 @@ npm start
 
 ```bash
 cd database
-npx json-server --wacth db.json --port 8080
+npx json-server --watch db.json --port 8080
 ```
 
 ### The App Content :
@@ -35,4 +35,3 @@ npx json-server --wacth db.json --port 8080
 - Services Page.
 - For the trader : press the (Trader) button in the navbar, then you can add Products, get all the products, their details and can also modify them.
 - For the Customer : press the (Customer) button in the navbar, then you can navigate between different products, show their details and can choose a specific category.
-
