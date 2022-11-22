@@ -39,15 +39,15 @@ function ProductDetails() {
           style={{ width: "100%", height: "60%" }}
         >
           <div className="row g-0">
-            <div className="col-md-4">
+            <div className="col-md-6">
               <img
                 src={product.product.image}
                 className="img-fluid rounded-start"
-                style={{ width: "100%", marginTop: "30%", height: "60%" }}
+                style={{ width: "100%", marginTop: "20%", height: "70%" }}
                 alt="..."
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-6">
               <div className="card-body">
                 <h3 className="card-title">{product.product.title}</h3>
                 <div className="card-text">

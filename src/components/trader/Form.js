@@ -6,8 +6,8 @@ function Form({ product, submitionFunction, changeFunction, formTitle }) {
   const onSubmitFunction = (e) => {
     e.preventDefault();
     const isFormValid = () => {
-      const { id, title, image, category, description, price } = product;
-      id &&
+      const { productId, title, image, category, description, price } = product;
+      productId &&
         title &&
         image &&
         category &&
@@ -24,10 +24,10 @@ function Form({ product, submitionFunction, changeFunction, formTitle }) {
         <label>ID</label>
         <input
           type="text"
-          value={product.id}
+          value={product.productId}
           onChange={(e) => changeFunction(e)}
           placeholder="Product id"
-          name="id"
+          name="productId"
         />
         <hr />
         <label>Name</label>

@@ -1,10 +1,16 @@
-import axios from "axios";
-import { useState } from "react";
+// import axios from "axios";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { productsContext } from "../../App";
+import { addProduct } from "../../firebase";
 import Form from "./Form";
+import getAllProducts from "./functions/getAllProducts";
+
 function AddNewProduct() {
+  const [, setProducts] = useContext(productsContext);
+
   const [product, setProduct] = useState({
-    id: "",
+    productId: "",
     title: "",
     image: "",
     category: "",
@@ -18,19 +24,27 @@ function AddNewProduct() {
       [e.target.name]: e.target.value,
     });
   };
-  const addNewProduct = () => {
-    axios
-      .post("http://localhost:8080/products", {
-        id: product.id,
-        title: product.title,
-        image: product.image,
-        category: product.category,
-        price: product.price,
-        description: product.description,
-      })
-      .then((data) => {
-        navigate("/products");
-      });
+  const addNewProduct = async () => {
+    // axios
+    //   .post("http://localhost:8080/products", {
+    //     id: product.id,
+    //     title: product.title,
+    //     image: product.image,
+    //     category: product.category,
+    //     price: product.price,
+    //     description: product.description,
+    //   })
+    await addProduct({
+      productId: product.productId,
+      title: product.title,
+      image: product.image,
+      category: product.category,
+      price: product.price,
+      description: product.description,
+    }).then(() => {
+      getAllProducts(setProducts);
+      navigate("/products");
+    });
   };
   return (
     <>

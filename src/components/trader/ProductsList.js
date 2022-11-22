@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { productsContext } from "../../App";
 import { Link, Outlet } from "react-router-dom";
 import getAllProducts from "./functions/getAllProducts";
 import deleteProduct from "./functions/deleteAProduct";
 
 function ProductsList() {
-  const [products, setProducts] = useState({
-    loading: true,
-    products: [],
-    error: "",
-  });
+  const [products, setProducts] = useContext(productsContext);
 
   useEffect(() => {
     getAllProducts(setProducts);
@@ -36,7 +33,7 @@ function ProductsList() {
           {products.products ? (
             products.products.map((p) => (
               <tr key={p.id}>
-                <td>{p.id}</td>
+                <td>{p.productId}</td>
                 <td>{p.title}</td>
                 <td>{p.category}</td>
                 <td>{p.price}$</td>
