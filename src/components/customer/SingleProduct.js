@@ -2,9 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import "../../css/single-product.css";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../reduxToolkit/cart/cart";
 
 function SingleProduct() {
   const params = useParams();
+  const dispatch = useDispatch();
+
   const [product, setProduct] = useState({
     id: 0,
     title: "",
@@ -32,7 +36,7 @@ function SingleProduct() {
   return (
     <div className="single-prod text-center">
       <h1 className="title text-center">{product.title}</h1>
-      <div className="body">
+      <div className="body col-12 col-sm-6">
         <div className="image">
           <img src={product.image} alt={product.title} />
         </div>
@@ -42,9 +46,15 @@ function SingleProduct() {
             <h2 className="category">Category : {product.category}</h2>
             <h2 className="price">Price : {product.price}$</h2>
           </div>
-          <NavLink className="btn btn-primary" to={"/"}>
+          <NavLink className="btn btn-primary w-50 mx-auto" to={"/"}>
             Go Back
           </NavLink>
+          <button
+            onClick={() => dispatch(cartActions.addToCart(product))}
+            className="btn btn-warning text-light w-50 mx-auto"
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

@@ -3,65 +3,62 @@ import { useParams, useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import axios from "axios";
 
-import { getProducts } from "../../firebase";
+import { getOneProduct } from "../../firebase";
 
 function ProductDetails() {
   const navigate = useNavigate();
-  const { productId } = useParams();
-  const [product, setProduct] = useState({
+  const { productId, id } = useParams();
+  const [data, setData] = useState({
     loading: true,
     product: {},
     error: "",
   });
   useEffect(() => {
-    getProducts
-      .then((res, rej) => {
-        console.log(res);
-        const prod = res.find((product) => +product.productId === +productId);
-        console.log(prod);
-        return setProduct({
+    getOneProduct(id)
+      .then((res) =>
+        setData({
           loading: false,
-          product: prod,
+          product: res,
           error: "",
-        });
-      })
+        })
+      )
       .catch((err) => console.log(err));
-  }, [productId]);
-  console.log(product);
+  }, [id]);
+
   return (
     <div>
       <h1 className="text-primary">Product Details</h1>
       <h1 className="text-primary">ID : {productId}</h1>
-      {product.product && (
+      {data.product && (
         <div
-          key={product.product.productId}
+          key={data.product.id}
           className="card mb-3 px-2 gap-4"
           style={{ width: "100%", height: "60%" }}
         >
           <div className="row g-0">
-            <div className="col-md-6">
+            <div className="col-md-4">
               <img
-                src={product.product.image}
+                src={data.product.image}
                 className="img-fluid rounded-start"
                 style={{ width: "100%", marginTop: "20%", height: "70%" }}
                 alt="..."
               />
             </div>
-            <div className="col-md-6">
+            <div className="col-md-8">
               <div className="card-body">
-                <h3 className="card-title">{product.product.title}</h3>
+                <h3 className="card-title">{data.product.title}</h3>
                 <div className="card-text">
                   <p className="py-3 fs-4">
-                    Category : {product.product.category}
+                    Category : {data.product.category}
                   </p>
                   <p className="py-3 fs-4 text-primary">
-                    Price : {product.product.price}$
+                    Price : {data.product.price}$
                   </p>
-                  <p className="py-3 fs-4">{product.product.description}</p>
+                  <p className="py-3 fs-4">{data.product.description}</p>
                 </div>
                 <button
                   onClick={() => {
-                    navigate(-1);
+                    navigate("/products");
                   }}
                   className="btn btn-primary"
                 >

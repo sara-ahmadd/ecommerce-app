@@ -51,7 +51,7 @@ function Products() {
   }, []);
 
   return (
-    <>
+    <div className="pt-5 ">
       <p className="fs-5 text-muted text-center">Shop is fun</p>
       <h1 className="text-primary text-center">BROWSE OUR NEW COLLECTION</h1>
       <Categories getCategory={getIntoCategory} getAll={getAllProducts} />
@@ -79,7 +79,7 @@ function Products() {
           {product.error && <h1>Somthing Went Wrong!..'{product.error}'</h1>}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

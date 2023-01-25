@@ -1,7 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProducts } from "../../firebase";
+import { getOneProduct } from "../../firebase";
 import editFunction from "./functions/editAProduct";
 
 function EditProduct() {
@@ -19,10 +19,7 @@ function EditProduct() {
   useEffect(() => {
     // axios.get(`http://localhost:8080/products/${id}`).then((res) => {
     // const data = res.data;
-    getProducts.then((res) => {
-      console.log(res);
-      const prod = res.find((product) => product.id === id);
-      console.log(prod);
+    getOneProduct(id).then((prod) =>
       setProduct({
         id: prod.id,
         productId: prod.productId,
@@ -31,8 +28,8 @@ function EditProduct() {
         category: prod.category,
         price: prod.price,
         description: prod.description,
-      });
-    });
+      })
+    );
   }, [id]);
 
   const changeFunction = (e) => {
@@ -47,7 +44,7 @@ function EditProduct() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          editFunction(product, navigate);
+          editFunction(product, id, navigate);
         }}
       >
         <label>ID</label>

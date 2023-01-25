@@ -4,8 +4,23 @@ import { Link, Outlet } from "react-router-dom";
 import getAllProducts from "./functions/getAllProducts";
 import deleteProduct from "./functions/deleteAProduct";
 
+import { onSnapshot } from "firebase/firestore";
+import { collectionRef } from "../../firebase";
+
 function ProductsList() {
   const [products, setProducts] = useContext(productsContext);
+
+  onSnapshot(collectionRef, (snapshot) => {
+    let books = [];
+    snapshot.docs.forEach((doc) => {
+      books.push({ ...doc.data(), id: doc.id });
+    });
+    setProducts({
+      loading: false,
+      products: books,
+      error: "",
+    });
+  });
 
   useEffect(() => {
     getAllProducts(setProducts);
@@ -45,7 +60,7 @@ function ProductsList() {
                     Edit
                   </Link>
                   <Link
-                    to={`/products/${p.productId}`}
+                    to={`/products/${p.productId}/${p.id}`}
                     className="btn btn-primary"
                   >
                     View

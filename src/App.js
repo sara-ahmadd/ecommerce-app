@@ -12,6 +12,8 @@ import EditProduct from "./components/trader/EditProduct";
 import { createContext, useState } from "react";
 import Products from "./components/customer/Products";
 import SingleProduct from "./components/customer/SingleProduct";
+import Cart from "./components/customer/Cart";
+import NotFound from "./components/NotFound";
 
 export const productsContext = createContext();
 
@@ -26,15 +28,14 @@ function App() {
 
   return (
     <productsContext.Provider value={[products, setProducts]}>
-      <div className="App ">
+      <div className="App">
         <Navbar customer={customer} setCustomer={setCustomer} />
-
         {!customer && (
           <div className="row d-flex gap-2">
-            <div className="col-2">
+            <div className="col-6 col-sm-2 mx-auto mx-sm-0">
               <Sidebar />
             </div>
-            <div className="col-9">
+            <div className="col-12 col-sm-9 mx-auto">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="about" element={<About />} />
@@ -43,8 +44,13 @@ function App() {
                   <Route path="" element={<ProductsList />} />
                   <Route path="edit/:id" exact element={<EditProduct />} />
                   <Route path="add" exact element={<AddNewProduct />} />
-                  <Route path=":productId" exact element={<ProductDetails />} />
+                  <Route
+                    path=":productId/:id"
+                    exact
+                    element={<ProductDetails />}
+                  />
                 </Route>
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </div>
           </div>
@@ -56,6 +62,7 @@ function App() {
               <Route path="/" element={<Products />} />
               <Route path="about" element={<About />} />
               <Route path="services" element={<Services />} />
+              <Route path="cart" element={<Cart />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<SingleProduct />} />
             </Routes>

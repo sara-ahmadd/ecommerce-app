@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import getAllProducts from "./getAllProducts";
+// import getAllProducts from "./getAllProducts";
 import { deleteSingleProduct } from "../../../firebase";
 
 const deleteProduct = (product) => {
@@ -11,7 +11,7 @@ const deleteProduct = (product) => {
       // fetch(`http://localhost:8080/products/${product.id}`, {
       //   method: "delete",
       // })
-      deleteSingleProduct(product.id).then(() => getAllProducts());
+      return deleteSingleProduct(product.id);
     }
   });
 };

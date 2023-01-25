@@ -1,8 +1,9 @@
 // import axios from "axios";
+import { addDoc } from "firebase/firestore";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { productsContext } from "../../App";
-import { addProduct } from "../../firebase";
+import { addProduct, collectionRef } from "../../firebase";
 import Form from "./Form";
 import getAllProducts from "./functions/getAllProducts";
 
@@ -34,15 +35,14 @@ function AddNewProduct() {
     //     price: product.price,
     //     description: product.description,
     //   })
-    await addProduct({
+    await addDoc(collectionRef, {
       productId: product.productId,
       title: product.title,
       image: product.image,
       category: product.category,
       price: product.price,
       description: product.description,
-    }).then(() => {
-      getAllProducts(setProducts);
+    }).then((prod) => {
       navigate("/products");
     });
   };
