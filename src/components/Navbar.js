@@ -70,7 +70,7 @@ function Navbar({ customer, setCustomer }) {
                 onClick={(e) => setCustomer(false)}
                 className="btn btn-primary"
               >
-                Trader
+                Admin
               </button>
             </div>
           </li>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import axios from "axios";
 import Categories from "./Categories";
-// import Slider from "./Slider";
+
 function Products() {
   const [product, setProduct] = useState({
     loading: true,

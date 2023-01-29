@@ -3,7 +3,6 @@ import {
   getFirestore,
   collection,
   getDocs,
-  addDoc,
   doc,
   deleteDoc,
   updateDoc,
@@ -26,19 +25,12 @@ const database = getFirestore();
 export const collectionRef = collection(database, "products");
 
 export const getProducts = getDocs(collectionRef).then((snapshot) => {
-  let books = [];
+  let products = [];
   snapshot.docs.forEach((doc) => {
-    books.push({ ...doc.data(), id: doc.id });
+    products.push({ ...doc.data(), id: doc.id });
   });
-
-  //   console.log(books);
-  return books;
+  return products;
 });
-
-//this function is moved to Add Product component
-// export const addProduct = async (product = {}) => {
-//   await addDoc(collectionRef, product);
-// };
 
 export const deleteSingleProduct = async (id) => {
   const docRef = doc(database, "products", id);
